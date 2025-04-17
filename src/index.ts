@@ -11,12 +11,7 @@ const {reportFile, onlyChangedFiles, failOnError, failOnWarning, markdownReportO
 
 async function run(): Promise<void> {
   core.info(`Starting analysis of the ESLint report ${reportFile.replace(/\n/g, ', ')}. Standby...`)
-  core.info(process.cwd())
-
   const reportJS = await eslintJsonReportToJs(reportFile)
-
-  constants.core.info('reportJS:')
-  constants.core.info(JSON.stringify(reportJS, null, 2))
 
   const analyzedReport = onlyChangedFiles
     ? await getPullRequestChangedAnalyzedReport(reportJS)
