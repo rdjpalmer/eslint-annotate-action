@@ -56566,7 +56566,10 @@ const constants_1 = __importDefault(__nccwpck_require__(9042));
 const { reportFile, onlyChangedFiles, failOnError, failOnWarning, markdownReportOnStepSummary } = constants_1.default;
 async function run() {
     core.info(`Starting analysis of the ESLint report ${reportFile.replace(/\n/g, ', ')}. Standby...`);
+    core.info(process.cwd());
     const reportJS = await (0, eslintJsonReportToJs_1.default)(reportFile);
+    constants_1.default.core.info('reportJS:');
+    constants_1.default.core.info(JSON.stringify(reportJS, null, 2));
     const analyzedReport = onlyChangedFiles
         ? await (0, getPullRequestChangedAnalyzedReport_1.default)(reportJS)
         : (0, getAnalyzedReport_1.default)(reportJS);
