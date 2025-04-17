@@ -56447,9 +56447,10 @@ async function getPullRequestChangedAnalyzedReport(reportJS) {
         pull_number: pullRequest.number,
     });
     constants_1.default.core.info("changedFiles:");
-    constants_1.default.core.info(changedFiles.length.toString());
+    constants_1.default.core.info(JSON.stringify(changedFiles, null, 2));
     constants_1.default.core.info("report:");
     constants_1.default.core.info(reportJS.length.toString());
+    constants_1.default.core.info(reportJS[0].filePath);
     // Separate lint reports for PR and non-PR files
     const pullRequestFilesReportJS = reportJS.filter((file) => {
         file.filePath = file.filePath.replace(GITHUB_WORKSPACE + '/', '');

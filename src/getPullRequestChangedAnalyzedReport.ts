@@ -18,10 +18,12 @@ export default async function getPullRequestChangedAnalyzedReport(
   })
 
   constants.core.info("changedFiles:");
-  constants.core.info(changedFiles.length.toString());
+  constants.core.info(JSON.stringify(changedFiles, null, 2))
 
-  constants.core.info("report:");
-  constants.core.info(reportJS.length.toString());
+  constants.core.info("report:")
+  constants.core.info(reportJS.length.toString())
+
+  constants.core.info(reportJS[0].filePath)
 
   // Separate lint reports for PR and non-PR files
   const pullRequestFilesReportJS: ESLintReport = reportJS.filter((file) => {
@@ -29,7 +31,7 @@ export default async function getPullRequestChangedAnalyzedReport(
     return changedFiles.indexOf(file.filePath) !== -1
   })
 
-  constants.core.info("changed file report:");
+  constants.core.info("changed file report:")
   constants.core.info(JSON.stringify(pullRequestFilesReportJS, null, 2));
 
   const analyzedPullRequestReport = getAnalyzedReport(pullRequestFilesReportJS)
