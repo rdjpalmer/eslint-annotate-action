@@ -56446,11 +56446,16 @@ async function getPullRequestChangedAnalyzedReport(reportJS) {
         repo: REPO,
         pull_number: pullRequest.number,
     });
+    constants_1.default.core.info("changedFiles:");
+    constants_1.default.core.info(JSON.stringify(changedFiles, null, 2));
+    constants_1.default.core.info("report:");
+    constants_1.default.core.info(JSON.stringify(reportJS, null, 2));
     // Separate lint reports for PR and non-PR files
     const pullRequestFilesReportJS = reportJS.filter((file) => {
         file.filePath = file.filePath.replace(GITHUB_WORKSPACE + '/', '');
         return changedFiles.indexOf(file.filePath) !== -1;
     });
+    constants_1.default.core.info("changed file report:");
     constants_1.default.core.info(JSON.stringify(pullRequestFilesReportJS, null, 2));
     const analyzedPullRequestReport = (0, getAnalyzedReport_1.default)(pullRequestFilesReportJS);
     let summary = `${analyzedPullRequestReport.summary} in pull request changed files.`;
