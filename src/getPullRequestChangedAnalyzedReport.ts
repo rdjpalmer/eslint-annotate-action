@@ -25,7 +25,14 @@ export default async function getPullRequestChangedAnalyzedReport(
 
   // Separate lint reports for PR and non-PR files
   const pullRequestFilesReportJS: ESLintReport = reportJS.filter((file) => {
+    constants.core.info("before");
+    constants.core.info(file.filePath);
+
     file.filePath = file.filePath.replace(GITHUB_WORKSPACE + '/', '')
+
+    constants.core.info("after");
+    constants.core.info(file.filePath);
+
     return changedFiles.indexOf(file.filePath) !== -1
   })
 
