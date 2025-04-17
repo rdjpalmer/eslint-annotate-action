@@ -56451,6 +56451,7 @@ async function getPullRequestChangedAnalyzedReport(reportJS) {
         file.filePath = file.filePath.replace(GITHUB_WORKSPACE + '/', '');
         return changedFiles.indexOf(file.filePath) !== -1;
     });
+    constants_1.default.core.info(JSON.stringify(pullRequestFilesReportJS, null, 2));
     const analyzedPullRequestReport = (0, getAnalyzedReport_1.default)(pullRequestFilesReportJS);
     let summary = `${analyzedPullRequestReport.summary} in pull request changed files.`;
     let markdown = `# Pull Request Changed Files ESLint Results:\n**${analyzedPullRequestReport.summary}**\n${analyzedPullRequestReport.markdown}`;
