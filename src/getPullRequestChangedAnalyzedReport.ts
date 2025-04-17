@@ -23,7 +23,7 @@ export default async function getPullRequestChangedAnalyzedReport(
     return changedFiles.indexOf(file.filePath) !== -1
   })
 
-  core.notice(pullRequestFilesReportJS);
+  constants.core.notice(pullRequestFilesReportJS);
 
   const analyzedPullRequestReport = getAnalyzedReport(pullRequestFilesReportJS)
   let summary = `${analyzedPullRequestReport.summary} in pull request changed files.`
