@@ -17,6 +17,10 @@ export default async function getPullRequestChangedAnalyzedReport(
     pull_number: pullRequest.number,
   })
 
+  constants.core.info("changedFiles:");
+  constants.core.info(JSON.stringify(changedFiles, null, 2));
+
+  constants.core.info("report:");
   constants.core.info(JSON.stringify(reportJS, null, 2));
 
   // Separate lint reports for PR and non-PR files
@@ -25,6 +29,7 @@ export default async function getPullRequestChangedAnalyzedReport(
     return changedFiles.indexOf(file.filePath) !== -1
   })
 
+  constants.core.info("changed file report:");
   constants.core.info(JSON.stringify(pullRequestFilesReportJS, null, 2));
 
   const analyzedPullRequestReport = getAnalyzedReport(pullRequestFilesReportJS)
